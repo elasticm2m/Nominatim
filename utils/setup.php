@@ -125,7 +125,7 @@
 			fail('database already exists ('.CONST_Database_DSN.')');
 		}
 
-		$cmd = 'PGPASSWORD='.$aDSNInfo['password]'].' createdb -E UTF-8';
+		$cmd = 'PGPASSWORD='.$aDSNInfo['password'].' createdb -E UTF-8';
 		$cmd .= ' -h '.$aDSNInfo['hostname'];
 		$cmd .= ' -p '.$aDSNInfo['port'];
 		$cmd .= ' -U '.$aDSNInfo['username'];
@@ -150,7 +150,7 @@
 			exit;
 		}
 
-		$cmd = 'PGPASSWORD='.$aDSNInfo['password]'].' createlang plpgsql';
+		$cmd = 'PGPASSWORD='.$aDSNInfo['password'].' createlang plpgsql';
 		$cmd .= ' -h '.$aDSNInfo['hostname'];
 		$cmd .= ' -p '.$aDSNInfo['port'];
 		$cmd .= ' -U '.$aDSNInfo['username'];
@@ -695,7 +695,7 @@
 		$sOutputFile = '';
 		if (isset($aCMDResult['index-output'])) $sOutputFile = ' -F '.$aCMDResult['index-output'];
 
-		$sBaseCmd = 'PGPASSWORD='.$aDSNInfo['password]'].' '.CONST_BasePath.'/nominatim/nominatim -i ';
+		$sBaseCmd = 'PGPASSWORD='.$aDSNInfo['password'].' '.CONST_BasePath.'/nominatim/nominatim -i ';
 		$sBaseCmd .= ' -H '.$aDSNInfo['hostname'];
 		$sBaseCmd .= ' -P '.$aDSNInfo['port'];
 		$sBaseCmd .= ' -U '.$aDSNInfo['username'];
@@ -792,7 +792,7 @@
 		//$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
 		//if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
 
-		$sCMD = 'PGPASSWORD='.$aDSNInfo['password]'].' psql';
+		$sCMD = 'PGPASSWORD='.$aDSNInfo['password'].' psql';
 		$sCMD .= ' -h '.$aDSNInfo['hostname'];
 		$sCMD .= ' -p '.$aDSNInfo['port'];
 		$sCMD .= ' -U '.$aDSNInfo['username'];
@@ -856,7 +856,7 @@
 		//$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
 		//if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
 
-		$sCMD = 'PGPASSWORD='.$aDSNInfo['password]'].' psql';
+		$sCMD = 'PGPASSWORD='.$aDSNInfo['password'].' psql';
 		$sCMD .= ' -h '.$aDSNInfo['hostname'];
 		$sCMD .= ' -p '.$aDSNInfo['port'];
 		$sCMD .= ' -U '.$aDSNInfo['username'];
@@ -893,7 +893,7 @@
 		//$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
 		//if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
 
-		$sCMD = 'PGPASSWORD='.$aDSNInfo['password]'].' pg_restore';
+		$sCMD = 'PGPASSWORD='.$aDSNInfo['password'].' pg_restore';
 		$sCMD .= ' -h '.$aDSNInfo['hostname'];
 		$sCMD .= ' -p '.$aDSNInfo['port'];
 		$sCMD .= ' -U '.$aDSNInfo['username'];
@@ -929,7 +929,7 @@
 		//$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
 		//if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
 
-		$sCMD = 'PGPASSWORD='.$aDSNInfo['password]'].' pg_restore';
+		$sCMD = 'PGPASSWORD='.$aDSNInfo['password'].' pg_restore';
 		$sCMD .= ' -h '.$aDSNInfo['hostname'];
 		$sCMD .= ' -p '.$aDSNInfo['port'];
 		$sCMD .= ' -U '.$aDSNInfo['username'];
