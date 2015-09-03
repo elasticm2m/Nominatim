@@ -744,8 +744,32 @@
 
 		// Convert database DSN to psql parameters
 		$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
-		if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
-		$sCMD = 'psql -p '.$aDSNInfo['port'].' -d '.$aDSNInfo['database'];
+		//if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
+
+		$hostspec = $aDSNInfo['hostspec'];
+		if (isset($hostspec))
+		{
+			$separatorPos = strpos($hostspec, ':');
+			if ($separatorPos === false)
+			{
+				$aDSNInfo['hostname'] = $hostspec;
+				$aDSNInfo['port'] = 5432;
+			}
+			else
+			{
+				$aDSNInfo['hostname'] = substr($hostspec, 0, $separatorPos);
+				$aDSNInfo['port'] = substr($hostspec, $separatorPos + 1);
+			}
+		}
+		else
+		{
+			// Use default values for host and port since values not set
+			$aDSNInfo['hostname'] = 'localhost';
+			$aDSNInfo['port'] = 5432;
+		}
+
+		$sCMD = 'PGPASSWORD='.$aDSNInfo['password]'].' psql -p '.$aDSNInfo['port'].' -d '.$aDSNInfo['database'].' -h '.$aDSNInfo['hostname'].' -U '.$aDSNInfo['username'];
+		//$sCMD = 'psql -p '.$aDSNInfo['port'].' -d '.$aDSNInfo['database'];
 
 		$ahGzipPipes = null;
 		if (preg_match('/\\.gz$/', $sFilename))
@@ -801,8 +825,31 @@
 		global $aCMDResult;
 		// Convert database DSN to psql parameters
 		$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
-		if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
-		$sCMD = 'psql -p '.$aDSNInfo['port'].' -d '.$aDSNInfo['database'];
+		//if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
+
+		$hostspec = $aDSNInfo['hostspec'];
+		if (isset($hostspec))
+		{
+			$separatorPos = strpos($hostspec, ':');
+			if ($separatorPos === false)
+			{
+				$aDSNInfo['hostname'] = $hostspec;
+				$aDSNInfo['port'] = 5432;
+			}
+			else
+			{
+				$aDSNInfo['hostname'] = substr($hostspec, 0, $separatorPos);
+                $aDSNInfo['port'] = substr($hostspec, $separatorPos + 1);
+			}
+		}
+		else
+		{
+			// Use default values for host and port since values not set
+			$aDSNInfo['hostname'] = 'localhost';
+			$aDSNInfo['port'] = 5432;
+		}
+
+		$sCMD = 'PGPASSWORD='.$aDSNInfo['password]'].' psql -p '.$aDSNInfo['port'].' -d '.$aDSNInfo['database'].' -h '.$aDSNInfo['hostname'].' -U '.$aDSNInfo['username'];
 		if ($bfatal && !$aCMDResult['ignore-errors'])
 			$sCMD .= ' -v ON_ERROR_STOP=1';
 		$aDescriptors = array(
@@ -832,8 +879,32 @@
 	{
 		// Convert database DSN to psql parameters
 		$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
-		if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
-		$sCMD = 'pg_restore -p '.$aDSNInfo['port'].' -d '.$aDSNInfo['database'].' -Fc -a '.$sDumpFile;
+		//if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
+
+		$hostspec = $aDSNInfo['hostspec'];
+		if (isset($hostspec))
+		{
+			$separatorPos = strpos($hostspec, ':');
+			if ($separatorPos === false)
+			{
+				$aDSNInfo['hostname'] = $hostspec;
+				$aDSNInfo['port'] = 5432;
+			}
+			else
+			{
+				$aDSNInfo['hostname'] = substr($hostspec, 0, $separatorPos);
+				$aDSNInfo['port'] = substr($hostspec, $separatorPos + 1);
+			}
+		}
+		else
+		{
+			// Use default values for host and port since values not set
+			$aDSNInfo['hostname'] = 'localhost';
+			$aDSNInfo['port'] = 5432;
+		}
+
+		$sCMD = 'PGPASSWORD='.$aDSNInfo['password]'].' pg_restore -p '.$aDSNInfo['port'].' -d '.$aDSNInfo['database'].' -h '.$aDSNInfo['hostname'].' -U '.$aDSNInfo['username'].' -Fc -a '.$sDumpFile;
+		//$sCMD = 'pg_restore -p '.$aDSNInfo['port'].' -d '.$aDSNInfo['database'].' -Fc -a '.$sDumpFile;
 
 		$aDescriptors = array(
 			0 => array('pipe', 'r'),
@@ -860,8 +931,32 @@
 	{
 		// Convert database DSN to psql parameters
 		$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
-		if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
-		$sCMD = 'pg_restore -p '.$aDSNInfo['port'].' -d '.$aDSNInfo['database'].' -Fc --clean '.$sDumpFile;
+		//if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
+
+		$hostspec = $aDSNInfo['hostspec'];
+		if (isset($hostspec))
+		{
+			$separatorPos = strpos($hostspec, ':');
+			if ($separatorPos === false)
+			{
+				$aDSNInfo['hostname'] = $hostspec;
+				$aDSNInfo['port'] = 5432;
+			}
+			else
+			{
+				$aDSNInfo['hostname'] = substr($hostspec, 0, $separatorPos);
+				$aDSNInfo['port'] = substr($hostspec, $separatorPos + 1);
+			}
+		}
+		else
+		{
+			// Use default values for host and port since values not set
+			$aDSNInfo['hostname'] = 'localhost';
+			$aDSNInfo['port'] = 5432;
+		}
+
+		$sCMD = 'PGPASSWORD='.$aDSNInfo['password]'].' pg_restore -p '.$aDSNInfo['port'].' -d '.$aDSNInfo['database'].' -h '.$aDSNInfo['hostname'].' -U '.$aDSNInfo['username'].' -Fc --clean '.$sDumpFile;
+		//$sCMD = 'pg_restore -p '.$aDSNInfo['port'].' -d '.$aDSNInfo['database'].' -Fc --clean '.$sDumpFile;
 
 		$aDescriptors = array(
 			0 => array('pipe', 'r'),
