@@ -792,6 +792,30 @@
 		//$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
 		//if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
 
+		// ElasticM2M Added to process remainder of fields in the postgres DSN
+		$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
+		$hostspec = $aDSNInfo['hostspec'];
+		if (isset($hostspec))
+		{
+			$separatorPos = strpos($hostspec, ':');
+			if ($separatorPos === false)
+			{
+				$aDSNInfo['hostname'] = $hostspec;
+				$aDSNInfo['port'] = 5432;
+			}
+			else
+			{
+				$aDSNInfo['hostname'] = substr($hostspec, 0, $separatorPos);
+				$aDSNInfo['port'] = substr($hostspec, $separatorPos + 1);
+			}
+		}
+		else
+		{
+			// Use default values for host and port since values not set
+			$aDSNInfo['hostname'] = 'localhost';
+			$aDSNInfo['port'] = 5432;
+		}
+
 		$sCMD = 'PGPASSWORD='.$aDSNInfo['password'].' psql';
 		$sCMD .= ' -h '.$aDSNInfo['hostname'];
 		$sCMD .= ' -p '.$aDSNInfo['port'];
@@ -856,6 +880,30 @@
 		//$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
 		//if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
 
+		// ElasticM2M Added to process remainder of fields in the postgres DSN
+		$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
+		$hostspec = $aDSNInfo['hostspec'];
+		if (isset($hostspec))
+		{
+			$separatorPos = strpos($hostspec, ':');
+			if ($separatorPos === false)
+			{
+				$aDSNInfo['hostname'] = $hostspec;
+				$aDSNInfo['port'] = 5432;
+			}
+			else
+			{
+				$aDSNInfo['hostname'] = substr($hostspec, 0, $separatorPos);
+				$aDSNInfo['port'] = substr($hostspec, $separatorPos + 1);
+			}
+		}
+		else
+		{
+			// Use default values for host and port since values not set
+			$aDSNInfo['hostname'] = 'localhost';
+			$aDSNInfo['port'] = 5432;
+		}
+
 		$sCMD = 'PGPASSWORD='.$aDSNInfo['password'].' psql';
 		$sCMD .= ' -h '.$aDSNInfo['hostname'];
 		$sCMD .= ' -p '.$aDSNInfo['port'];
@@ -893,6 +941,30 @@
 		//$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
 		//if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
 
+		// ElasticM2M Added to process remainder of fields in the postgres DSN
+		$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
+		$hostspec = $aDSNInfo['hostspec'];
+		if (isset($hostspec))
+		{
+			$separatorPos = strpos($hostspec, ':');
+			if ($separatorPos === false)
+			{
+				$aDSNInfo['hostname'] = $hostspec;
+				$aDSNInfo['port'] = 5432;
+			}
+			else
+			{
+				$aDSNInfo['hostname'] = substr($hostspec, 0, $separatorPos);
+				$aDSNInfo['port'] = substr($hostspec, $separatorPos + 1);
+			}
+		}
+		else
+		{
+			// Use default values for host and port since values not set
+			$aDSNInfo['hostname'] = 'localhost';
+			$aDSNInfo['port'] = 5432;
+		}
+
 		$sCMD = 'PGPASSWORD='.$aDSNInfo['password'].' pg_restore';
 		$sCMD .= ' -h '.$aDSNInfo['hostname'];
 		$sCMD .= ' -p '.$aDSNInfo['port'];
@@ -928,6 +1000,30 @@
 		// Convert database DSN to psql parameters
 		//$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
 		//if (!isset($aDSNInfo['port']) || !$aDSNInfo['port']) $aDSNInfo['port'] = 5432;
+
+		// ElasticM2M Added to process remainder of fields in the postgres DSN
+		$aDSNInfo = DB::parseDSN(CONST_Database_DSN);
+		$hostspec = $aDSNInfo['hostspec'];
+		if (isset($hostspec))
+		{
+			$separatorPos = strpos($hostspec, ':');
+			if ($separatorPos === false)
+			{
+				$aDSNInfo['hostname'] = $hostspec;
+				$aDSNInfo['port'] = 5432;
+			}
+			else
+			{
+				$aDSNInfo['hostname'] = substr($hostspec, 0, $separatorPos);
+				$aDSNInfo['port'] = substr($hostspec, $separatorPos + 1);
+			}
+		}
+		else
+		{
+			// Use default values for host and port since values not set
+			$aDSNInfo['hostname'] = 'localhost';
+			$aDSNInfo['port'] = 5432;
+		}
 
 		$sCMD = 'PGPASSWORD='.$aDSNInfo['password'].' pg_restore';
 		$sCMD .= ' -h '.$aDSNInfo['hostname'];
