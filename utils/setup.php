@@ -219,7 +219,7 @@
 
 		//$osm2pgsql = CONST_Osm2pgsql_Binary;
 		$osm2pgsql = 'PGPASSWORD='.$aDSNInfo['password'].' '.CONST_Osm2pgsql_Binary;
-		if (!file_exists($osm2pgsql))
+		if (!file_exists(CONST_Osm2pgsql_Binary))
 		{
 			echo "Please download and build osm2pgsql.\nIf it is already installed, check the path in your local settings (settings/local.php) file.\n";
 			fail("osm2pgsql not found in '$osm2pgsql'");
