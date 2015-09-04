@@ -10,13 +10,13 @@ END;
 $$
 LANGUAGE plpgsql IMMUTABLE;
 
-CREATE OR REPLACE FUNCTION transliteration(text) RETURNS text
-  AS '{modulepath}/nominatim.so', 'transliteration'
-LANGUAGE c IMMUTABLE STRICT;
+--CREATE OR REPLACE FUNCTION transliteration(text) RETURNS text
+--  AS '{modulepath}/nominatim.so', 'transliteration'
+--LANGUAGE c IMMUTABLE STRICT;
 
-CREATE OR REPLACE FUNCTION gettokenstring(text) RETURNS text
-  AS '{modulepath}/nominatim.so', 'gettokenstring'
-LANGUAGE c IMMUTABLE STRICT;
+--CREATE OR REPLACE FUNCTION gettokenstring(text) RETURNS text
+--  AS '{modulepath}/nominatim.so', 'gettokenstring'
+--LANGUAGE c IMMUTABLE STRICT;
 
 CREATE OR REPLACE FUNCTION make_standard_name(name TEXT) RETURNS TEXT
   AS $$
